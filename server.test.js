@@ -166,5 +166,50 @@ const {app}=require('./server');
 	});
 	
 	
+	describe('GET/data/:id',()=>{
+		it('should get a records in the DATA.json file',()=>{
+		
+			request(app)
+			.get('/data/3')
+			.expect(200)
+			.expect((res)=>{
+				expect(res.body.id).toBe(3);
+			})
+			.end((err,res)=>{
+				if(err){
+					return err;
+				}
+			
+				//done();
+			});
+		
+		});
+	});
 	
+	/**
+	describe('PATCH/data',()=>{
+		it('should post data in the DATA.json file',(done)=>{
+		
+			var newobj={name:"karthi",age:27,gender:"male",salary:15000,dob:1990-05-11,deleted:false};
+			
+			request(app)
+			.post('/data')
+			.send(newobj)
+			.expect(200)
+			.expect((res)=>{
+				var obj1=JSON.parse(res.body);
+				expect(obj1).toEqual(newobj);
+			})
+			.end((err,res)=>{
+				if(err){
+					return done(err);
+				}
+			
+				done();
+			});
+		
+		});
+	});
+	
+	**/
 	});
