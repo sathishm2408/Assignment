@@ -8,12 +8,14 @@ const {app}=require('./server');
 		it('should read the contents of a file',(done)=>{
 		
 			var content=fs.readFileSync(__dirname+'/data/sample.txt').toString();		
-		
+			//var size;
+			
 			request(app)
 			.get('/read')
 			.expect(200)
 			.expect((res)=>{
 				expect(res.body.content).toBe(content);
+				//expect(res.body).toBeTruthy(size)
 			})
 			.end((err,res)=>{
 				if(err){
@@ -63,6 +65,7 @@ const {app}=require('./server');
 			.expect((res)=>{
 				var obj1=JSON.parse(res.body);
 				var len1=obj1.length;
+				expect(obj1).toEqual(obj);
 				expect(len1).toBe(len);
 			})
 			.end((err,res)=>{
