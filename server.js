@@ -94,7 +94,7 @@ app.use(bodyParser.urlencoded({extended:true}));
 		});
 		fs.writeFileSync(__dirname+"/data/DATA.json",JSON.stringify(obj));
 		
-		console.log(obj);
+		//console.log(obj);
 		res.json(obj);
 	});
 	
@@ -108,7 +108,7 @@ app.use(bodyParser.urlencoded({extended:true}));
 		
 		fs.writeFileSync(__dirname+"/data/DATA.json",JSON.stringify(obj));
 		
-		console.log(obj);
+		//console.log(obj);
 		res.json(obj);
 	});
 	
@@ -161,11 +161,11 @@ app.use(bodyParser.urlencoded({extended:true}));
 		for(i=0;i<len;i++){
 			if(obj[i].id==req.params.id){
 				obj[i].name=req.body.name,
-				obj[i].age=req.body.age,
+				obj[i].age=parseInt(req.body.age,10),
 				obj[i].gender=req.body.gender,
-				obj[i].salary=req.body.salary,
+				obj[i].salary=parseInt(req.body.salary,10),
 				obj[i].dob=req.body.dob,
-				obj[i].deleted=req.body.deleted
+				obj[i].deleted=JSON.parse(req.body.deleted)
 				result=obj[i];
 			}
 				
@@ -186,3 +186,6 @@ app.use(bodyParser.urlencoded({extended:true}));
 app.listen(4040,()=>{
 	console.log('started on port 4040');
 });
+
+
+module.exports={app};
