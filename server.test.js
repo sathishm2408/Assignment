@@ -187,13 +187,13 @@ const {app}=require('./server');
 	});
 	
 	/**
-	describe('PATCH/data',()=>{
+	describe('PATCH/data/:id',()=>{
 		it('should post data in the DATA.json file',(done)=>{
 		
 			var newobj={name:"karthi",age:27,gender:"male",salary:15000,dob:1990-05-11,deleted:false};
 			
 			request(app)
-			.post('/data')
+			.post('/data/:id')
 			.send(newobj)
 			.expect(200)
 			.expect((res)=>{
