@@ -7,7 +7,7 @@ const {app}=require('./server');
 	describe('GET/read',()=>{
 		it('should read the contents of a file',(done)=>{
 		
-			var content=fs.readFileSync(__dirname+'/data/sample.txt').toString();		
+			let content=fs.readFileSync(__dirname+'/data/sample.txt').toString();		
 			//var size;
 			
 			request(app)
@@ -55,16 +55,16 @@ const {app}=require('./server');
 	describe('GET/data',()=>{
 		it('should read all the records in the DATA.json file',()=>{
 		
-			var content=fs.readFileSync(__dirname+'/data/DATA.json');		
-			var obj=JSON.parse(content);
-			var len=obj.length;
+			let content=fs.readFileSync(__dirname+'/data/DATA.json');		
+			let obj=JSON.parse(content);
+			let len=obj.length;
 						
 			request(app)
 			.get('/data')
 			.expect(200)
 			.expect((res)=>{
-				var obj1=JSON.parse(res.body);
-				var len1=obj1.length;
+				let obj1=JSON.parse(res.body);
+				let len1=obj1.length;
 				expect(obj1).toEqual(obj);
 				expect(len1).toBe(len);
 			})
@@ -84,19 +84,19 @@ const {app}=require('./server');
 	/**describe('POST/data',()=>{
 		it('should post data in the DATA.json file',(done)=>{
 		
-			var content=fs.readFileSync(__dirname+'/data/DATA.json');		
-			var obj=JSON.parse(content);
-			var len=obj.length;
+			let content=fs.readFileSync(__dirname+'/data/DATA.json');		
+			let obj=JSON.parse(content);
+			let len=obj.length;
 			
-			var newobj={name:"karthi",age:27,gender:"male",salary:15000,dob:1990-05-11,deleted:false};
+			let newobj={name:"karthi",age:27,gender:"male",salary:15000,dob:1990-05-11,deleted:false};
 			
 			request(app)
 			.post('/data')
 			.send(newobj)
 			.expect(200)
 			.expect((res)=>{
-				var obj1=JSON.parse(res.body);
-				var len1=obj1.length;
+				let obj1=JSON.parse(res.body);
+				let len1=obj1.length;
 				expect(len1).toBe(len+1);
 			})
 			.end((err,res)=>{
@@ -116,8 +116,8 @@ const {app}=require('./server');
 	describe('GET/sort',()=>{
 		it('should sort all the records in the DATA.json file',()=>{
 		
-		var dataString=fs.readFileSync(__dirname+"/data/DATA.json");
-		var obj=JSON.parse(dataString);
+		let dataString=fs.readFileSync(__dirname+"/data/DATA.json");
+		let obj=JSON.parse(dataString);
 				
 		obj.sort((a,b)=>(a.age>b.age)? 1:((b.age > a.age)? -1:0))
 		
@@ -141,10 +141,10 @@ const {app}=require('./server');
 	describe('GET/avg-salary',()=>{
 		it('should calculate the average salary of all the records in the DATA.json file',()=>{
 		
-			var content=fs.readFileSync(__dirname+'/data/DATA.json');		
-			var obj=JSON.parse(content);
-			var len=obj.length;
-			var sum=0,avg=0;
+			let content=fs.readFileSync(__dirname+'/data/DATA.json');		
+			let obj=JSON.parse(content);
+			let len=obj.length;
+			let sum=0,avg=0;
 						
 			for(i=0;i<len;i++){
 				sum=sum+obj[i].salary;
@@ -193,14 +193,14 @@ const {app}=require('./server');
 	describe('PATCH/data/:id',()=>{
 		it('should post data in the DATA.json file',(done)=>{
 		
-			var newobj={name:"karthi",age:27,gender:"male",salary:15000,dob:1990-05-11,deleted:false};
+			let newobj={name:"karthi",age:27,gender:"male",salary:15000,dob:1990-05-11,deleted:false};
 			
 			request(app)
 			.post('/data/:id')
 			.send(newobj)
 			.expect(200)
 			.expect((res)=>{
-				var obj1=JSON.parse(res.body);
+				let obj1=JSON.parse(res.body);
 				expect(obj1).toEqual(newobj);
 			})
 			.end((err,res)=>{
