@@ -34,9 +34,17 @@ app.use(bodyParser.urlencoded({extended:true}));
 			let len=con.content.length;
 			con.vowels=0,con.consonants=0,con.specialCharacters=0;
 			let str=con.content;
-			
+			getCount(str);
 			//to find the no of vowels,consonants and special chracters			
-			for(i=0;i<len;i++){
+			function getCount(words) {
+				var words=(typeof words == 'string') ? words : '';
+				count=re=>(words.match(re)||[]).length;
+				con.vowels=count(/[aeiou]/ig);
+				con.consonants=count(/[bcdfghjklmnpqrstvxzwy]/ig);
+				con.specialCharacters=count(/[ !@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/);
+				}
+			
+			/**for(i=0;i<len;i++){
 				if(str[i]=='a' || str[i]=='e' || str[i]=='i' ||str[i]=='o' || str[i]=='u' || str[i]=='A' ||str[i]=='E' || str[i]=='I' || str[i]=='O' ||str[i]=='U')
 				{
 					con.vowels++;
@@ -52,7 +60,7 @@ app.use(bodyParser.urlencoded({extended:true}));
 					con.specialCharacters++;
 				}
 			}
-			
+			**/
 			res.send(con);
 			
 		});
