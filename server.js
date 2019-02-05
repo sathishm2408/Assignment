@@ -127,9 +127,7 @@ app.use(bodyParser.urlencoded({extended:true}));
 		try{
 		fs.writeFileSync(__dirname+"/data/DATA.json",JSON.stringify(obj));
 		}catch(err){
-			if (err.code === 'ENOENT') {
-				console.log('File not found!');
-			} else {
+			if (err) {
 				throw err;
 			}
 		}
@@ -161,9 +159,7 @@ app.use(bodyParser.urlencoded({extended:true}));
 		try{
 		fs.writeFileSync(__dirname+"/data/DATA.json",JSON.stringify(obj));
 		}catch(err){
-			if (err.code === 'ENOENT') {
-				console.log('File not found!');
-			} else {
+			if (err) {
 				throw err;
 			}
 		}
@@ -289,9 +285,7 @@ app.use(bodyParser.urlencoded({extended:true}));
 		try{
 		fs.writeFileSync(__dirname+"/data/DATA.json",JSON.stringify(obj));
 		}catch(err){
-			if (err.code === 'ENOENT') {
-				console.log('File not found!');
-			} else {
+			if (err) {
 				throw err;
 			}
 		}
